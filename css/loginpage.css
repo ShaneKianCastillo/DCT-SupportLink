@@ -38,25 +38,6 @@ body {
   margin: 0 auto 20px; /* optional bottom margin */
 }
 
-.signup-des{
-    color: #ffffff;
-}
-
-.signup-link {
-  color: #ff69b4;
-  font-weight: semibold;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.signup-link:hover {
-  text-decoration: underline;
-  letter-spacing: 0.5px;
-}
-
-
-
-
 .login-box .user-box {
   position: relative;
 }
