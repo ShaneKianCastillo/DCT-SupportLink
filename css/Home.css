@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  padding-bottom: 100px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.check {
+  display: none;
+}
+
+.form-section,
+.chatbot-section,
+.logs-section,
+.profile-section {
+  display: none;
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+#item1:checked ~ .report-section,
+#item2:checked ~ .chatbot-section,
+#item3:checked ~ .logs-section,
+#item4:checked ~ .profile-section {
+  display: block;
+}
+
+.nav-bar {
+  width: 100%;
+  height: 80px;
+  padding: 35px;
+  background: linear-gradient(to top, #ffffff, #ff69b4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: poppins;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.nav-bar label {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px;
+  border-radius: 8mm;
+  max-width: 36px;
+  overflow: hidden;
+  transition: 0.35s ease-out;
+}
+
+.nav-bar label:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.check:nth-child(1):checked ~ .nav-bar label:nth-child(1),
+.check:nth-child(2):checked ~ .nav-bar label:nth-child(2),
+.check:nth-child(3):checked ~ .nav-bar label:nth-child(3),
+.check:nth-child(4):checked ~ .nav-bar label:nth-child(4) {
+  background: var(--color1);
+  max-width: 150px;
+  color: var(--color2);
+  padding: 10px 14px;
+}
+
+.nav-icon {
+  font-size: 23px;
+  padding-right: 15px;
+}
