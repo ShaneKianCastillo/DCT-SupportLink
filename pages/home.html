@@ -1,163 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-      body {
-        width: 100%;
-        height: 100vh;
-        margin: 0;
-        padding: 0;
-      }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      padding-bottom: 100px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-      *{
-        font-family: Arial, Helvetica, sans-serif;
-         margin: 0;
-        padding: 0;
-      }
-      .center {
-        width: 100%;
-        height: 100vh;
-        background: white;
-        position: relative; /* or you can remove this if not needed */
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        
-            }
-      .check {
-        display: none;
-      }
-      .nav-bar {
-        width: 100%;
-        height: 80px;
-        padding: 35px;
-         background: linear-gradient(to top, #ffffff, #ff69b4);;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-family: poppins;
-        border-radius: 0 0 0 0;
-      }
-      .nav-bar label {
-        display: flex;
-        align-items: center;
-        justify-content: left;
-        font-size: 15px;
-        font-weight: 500;
-        padding: 10px;
-        border-radius: 8mm;
-        max-width: 36px;
-        overflow: hidden;
-        transition: 0.35s ease-out;
-      }
-      .nav-bar label span {
-        font-size: 32px;
-        margin-right: 10px;
-      }
-      .nav-bar label:hover {
-        background: rgba(0, 0, 0, 0.1);
-      }
-      .check:nth-child(1):checked ~ .center .nav-bar label:nth-child(1),
-      .check:nth-child(2):checked ~ .center .nav-bar label:nth-child(2),
-      .check:nth-child(3):checked ~ .center .nav-bar label:nth-child(3),
-      .check:nth-child(4):checked ~ .center .nav-bar label:nth-child(4) {
-        background: var(--color1);
-        max-width: 150px;
-        color: var(--color2);
-        padding: 10px 14px;
-      }
+    .check {
+      display: none;
+    }
 
-      .nav-icon {
-        font-size: 23px;
-        padding-right: 15px;
-     }
+    .form-section,
+    .chatbot-section,
+    .logs-section,
+    .profile-section {
+      display: none;
+      max-width: 500px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
 
-      
-    </style>
-    <title>Home</title>
+    #item1:checked ~ .report-section,
+    #item2:checked ~ .chatbot-section,
+    #item3:checked ~ .logs-section,
+    #item4:checked ~ .profile-section {
+      display: block;
+    }
+
+    .nav-bar {
+      width: 100%;
+      height: 80px;
+      padding: 35px;
+      background: linear-gradient(to top, #ffffff, #ff69b4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: poppins;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+
+    .nav-bar label {
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 10px;
+      border-radius: 8mm;
+      max-width: 36px;
+      overflow: hidden;
+      transition: 0.35s ease-out;
+    }
+
+    .nav-bar label:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    .check:nth-child(1):checked ~ .nav-bar label:nth-child(1),
+    .check:nth-child(2):checked ~ .nav-bar label:nth-child(2),
+    .check:nth-child(3):checked ~ .nav-bar label:nth-child(3),
+    .check:nth-child(4):checked ~ .nav-bar label:nth-child(4) {
+      background: var(--color1);
+      max-width: 150px;
+      color: var(--color2);
+      padding: 10px 14px;
+    }
+
+    .nav-icon {
+      font-size: 23px;
+      padding-right: 15px;
+    }
+  </style>
+  <title>Home</title>
 </head>
 <body>
 
-    <!-- <div class="container">
-        <form action="">
-            <div>
-                <p>Building Name</p>
-                <input type="text" class="form-control" placeholder="Enter Building Name" required>
-            </div>
-        </form>
-    </div> -->
+  <!-- Radio buttons -->
+  <input type="radio" name="nav" id="item1" class="check" checked />
+  <input type="radio" name="nav" id="item2" class="check" />
+  <input type="radio" name="nav" id="item3" class="check" />
+  <input type="radio" name="nav" id="item4" class="check" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <input type="radio" name="nav" id="item1" class="check" checked />
-    <input type="radio" name="nav" id="item2" class="check" />
-    <input type="radio" name="nav" id="item3" class="check" />
-    <input type="radio" name="nav" id="item4" class="check" />
-    <div class="center">
-      <div class="nav-bar">
-        <label
-          class="fw-semibold"
-          for="item1"
-          style="--color1: rgb(246, 214, 238); --color2: rgb(201, 55, 157)"
-        >
-            <i class="fa-solid fa-file nav-icon"></i>
-          Report
+  <!-- Report (Form) -->
+  <div class="form-section report-section">
+    <form>
+      <div class="mb-3">
+        <label class="form-label fw-bold">BUILDING NAME <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" required />
+      </div>
+      <div class="mb-3">
+        <label class="form-label fw-bold">FLOOR LOCATION <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" required />
+      </div>
+      <div class="mb-3">
+        <label class="form-label fw-bold">SERVICE TYPE <span class="text-danger">*</span></label>
+        <select class="form-select" required>
+          <option value="" selected disabled>Select service</option>
+          <option value="MIS">MIS</option>
+          <option value="CSD">CSD</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label fw-bold d-block">UPLOAD IMAGE</label>
+        <label for="imageUpload" class="d-flex align-items-center justify-content-center border rounded bg-light" style="height: 150px; cursor: pointer;">
+          <i class="fa-solid fa-upload me-2"></i> Upload Image
         </label>
+        <input type="file" id="imageUpload" class="form-control d-none" accept="image/*" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label fw-bold">OTHER DETAILS</label>
+        <textarea class="form-control" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-dark w-100 fw-bold">SUBMIT</button>
+    </form>
+  </div>
 
-        <label
-          class="fw-semibold" 
-          for="item2"
-          style="--color1: rgb(246, 214, 238); --color2: rgb(201, 55, 157)"
-        >
-          <i class="fa-brands fa-rocketchat nav-icon" ></i>
-          ChatBot
-        </label>
+  <!-- Chatbot Section -->
+  <div class="chatbot-section">
+    <h4 class="text-center mt-5">ChatBot Section</h4>
+    <p class="text-center text-muted">Coming soon...</p>
+  </div>
 
-        <label
-          class="fw-semibold"
-          for="item3"
-          style="--color1: rgb(246, 214, 238); --color2: rgb(201, 55, 157)"
-        >
-          <i class="fa-solid fa-list nav-icon"></i>
-           Logs
-        </label>
-
-        <label
-          class="fw-semibold"
-          for="item4"
-          style="--color1: rgb(246, 214, 238); --color2: rgb(201, 55, 157)"
-        >
-          <i class="fa-solid fa-user nav-icon"></i>
-          Profile
-        </label>
+  <!-- Logs Section -->
+  <div class="logs-section">
+    <div class="container py-4 px-3">
+      <h5 class="fw-bold text-center mb-3">REPORT LOGS</h5>
+      <div class="d-flex justify-content-between align-items-center mb-2 px-1">
+        <small class="fw-semibold text-secondary">SORT BY <i class="fa-solid fa-arrow-down-short-wide"></i></small>
+      </div>
+      <div class="bg-dark text-white rounded-top px-3 py-2 d-flex justify-content-between align-items-center">
+        <span class="fw-semibold">ON PROGRESS</span>
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <div class="border rounded-bottom p-3" style="background-color: #fdf5f8;">
+        <p class="text-muted small">No reports yet.</p>
       </div>
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  </div>
 
+  <!-- Profile Section -->
+  <div class="profile-section text-center">
+    <h5 class="fw-bold mb-4 mt-4">PROFILE</h5>
+
+    <!-- Profile Image Placeholder -->
+    <div class="mx-auto mb-3" style="width: 100px; height: 100px; border-radius: 50%; background-color: #001233;"></div>
+
+    <!-- Name and Department -->
+    <div class="mb-4">
+      <h6 class="fw-bold text-warning mb-0">SHANE KIAN CASTILLO</h6>
+      <small class="text-secondary">College of Computer Studies</small>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="d-grid gap-2 px-3">
+      <button class="btn btn-light border d-flex align-items-center justify-content-start gap-2">
+        <i class="fa-solid fa-user text-dark"></i> Edit Profile
+      </button>
+      <button class="btn btn-light border d-flex align-items-center justify-content-start gap-2">
+        <i class="fa-solid fa-lock text-dark"></i> Change Password
+      </button>
+      <button class="btn btn-light border d-flex align-items-center justify-content-start gap-2">
+        <i class="fa-solid fa-right-from-bracket text-dark"></i> Logout
+      </button>
+    </div>
+  </div>
+
+  <!-- Bottom Nav Bar -->
+  <div class="nav-bar">
+    <label class="fw-semibold" for="item1" style="--color1: rgb(246, 214, 238); --color2: rgb(201, 55, 157)">
+      <i class="fa-solid fa-file nav-icon"></i> Report
+    </label>
+    <label class="fw-semibold" for="item2" style="--color1: rgb(246, 214, 238); --color2: rgb(201, 55, 157)">
+      <i class="fa-brands fa-rocketchat nav-icon"></i> ChatBot
+    </label>
+    <label class="fw-semibold" for="item3" style="--color1: rgb(246, 214, 238); --color2: rgb(201, 55, 157)">
+      <i class="fa-solid fa-list nav-icon"></i> Logs
+    </label>
+    <label class="fw-semibold" for="item4" style="--color1: rgb(246, 214, 238); --color2: rgb(201, 55, 157)">
+      <i class="fa-solid fa-user nav-icon"></i> Profile
+    </label>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
