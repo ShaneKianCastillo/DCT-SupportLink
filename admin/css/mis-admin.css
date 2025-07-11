@@ -1,0 +1,12 @@
+.link-bg.active {
+    background-color: white;
+    color: black;
+}
+
+.link-bg:hover p {
+  font-weight: bold;
+}
+
+#userContent {
+    
+}
