@@ -7,6 +7,19 @@
   font-weight: bold;
 }
 
-#userContent {
-    
+#sentReports {
+    display: none;
 }
+
+#userContent {
+    display: none;
+}
+
+#onProcessReports {
+    display: none;
+}
+
+#resolvedReports {
+    display: none;
+}
+
