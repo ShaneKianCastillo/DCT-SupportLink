@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/mis-admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>MIS Admin - DCT SupportLink</title>
 </head>
 <body>
@@ -27,18 +28,36 @@
                 </a>
             </div>
 
-            <div class="d-flex ps-5  pt-3">
-                <a href="#" class="d-flex align-items-center text-decoration-none fs-5 link-bg" onclick="setActive(this)">
-                    <i class="fa-solid fa-list-check text-light me-2"></i>
-                    <p class="mb-0 text-light">Report List</p>
-                </a>
+            <div class="d-flex ps-5 pt-3 flex-column">
+            <!-- Parent dropdown toggle -->
+            <a href="#" class="d-flex align-items-center text-decoration-none fs-5 link-bg" onclick="toggleDropdown(event)">
+                <i class="fa-solid fa-list-check text-light me-2"></i>
+                <p class="mb-0 text-light">Report List</p>
+                <i class="fa-solid fa-chevron-down text-light ms-3"></i>
+            </a>
+
+            <!-- Dropdown content -->
+            <div class="dropdown-links d-none d-flex flex-column ms-4 mt-2">
+            <a href="#" class="text-light text-decoration-none py-1 ps-4"><i class="ri-file-list-3-line pe-1"></i>Sent Reports</a>
+            <a href="#" class="text-light text-decoration-none py-1 ps-4"><i class="fa-solid fa-arrows-spin pe-1"></i>On Process</a>
+            <a href="#" class="text-light text-decoration-none py-1 ps-4"><i class="ri-file-check-line pe-1"></i></i>Resolved</a>
+            </div>
             </div>
 
-            <div class="d-flex ps-5  pt-3">
-                <a href="#" class="d-flex align-items-center text-decoration-none fs-5 link-bg" onclick="setActive(this)">
-                    <i class="fa-solid fa-pen-to-square text-light me-2"></i>
-                    <p class="mb-0 text-light">Asset</p>
-                </a>
+
+            <div class="d-flex ps-5 pt-3 flex-column">
+            <!-- Parent dropdown toggle -->
+            <a href="#" class="d-flex align-items-center text-decoration-none fs-5 link-bg" onclick="toggleDropdown(event)">
+                <i class="fa-solid fa-pen-to-square text-light me-2"></i>
+                <p class="mb-0 text-light">Asset</p>
+                <i class="fa-solid fa-chevron-down text-light ms-3"></i>
+            </a>
+
+            <!-- Dropdown content -->
+            <div class="dropdown-links d-none d-flex flex-column ms-4 mt-2">
+            <a href="#" class="text-light text-decoration-none py-1 ps-4"><i class="fa-solid fa-code-pull-request pe-1"></i></i>Asset Request</a>
+            <a href="#" class="text-light text-decoration-none py-1 ps-4"><i class="fa-solid fa-clock-rotate-left pe-1"></i></i>Request History</a>
+            </div>
             </div>
 
             <div class="d-flex ps-5  pt-3">
@@ -102,7 +121,7 @@
                     <th>Teacher</th>
                     <th>CCS</th>
                     <th>06-06-25</th>
-                    <th><button class="btn btn-danger"><i class="ri-spam-2-line pe-1"></i>Block</button></th>
+                    <th><button class="btn btn-danger" onclick="blockUser()"><i class="ri-spam-2-line pe-1"></i>Block</button></th>
                 </tr>
                 <tr>
                     <th>lawrencedelapena</th>
@@ -201,12 +220,218 @@
     </div>
     <!-- User Content End -->
 
-    <!-- Report List Content -->
-    <div id="reportListContent">
+    <!-- Sent Reports Content -->
+    <div id="sentReports">
+        <!-- Header section -->
+        <div class="ms-300" style="margin-left: 300px; padding: 20px; overflow-x: hidden;">
+            <div class="d-flex justify-content-between align-items-center">
+            <p class="fs-2 fw-bold mb-0">Sent Reports</p>
+            <span class="text-uppercase fw-bold text-secondary" style="font-size: 0.9rem; cursor: pointer;">
+                Sort by <i class="fa-solid fa-arrow-down-short-wide ms-1"></i>
+            </span>
+            </div>
+        </div>
 
+        <!-- Report card -->
+        <div class="d-flex flex-column px-4" style="margin-left: 300px;">
+            <div class="d-flex justify-content-between align-items-center shadow rounded p-3 mb-3" style="background-color: white;">
+            <div class="text-dark">
+                <span class="fw-bold">Lawrence Dela Pena</span> - College of Computer Studies - 2025 - 05-27 - 4:50 pm
+            </div>
+            <div>
+                <a href="#" class="fw-bold text-dark text-decoration-none">View Report <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i></a>
+            </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column px-4" style="margin-left: 300px;">
+            <div class="d-flex justify-content-between align-items-center shadow rounded p-3 mb-3" style="background-color: white;">
+            <div class="text-dark">
+                <span class="fw-bold">Lawrence Dela Pena</span> - College of Computer Studies - 2025 - 05-27 - 4:50 pm
+            </div>
+            <div>
+                <a href="#" class="fw-bold text-dark text-decoration-none">View Report <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i></a>
+            </div>
+            </div>
+        </div>
     </div>
+    <!-- Sent Report Content End -->
+
+    <!-- On Process Content -->
+    <div id="onProcessReports">
+        <!-- Header section -->
+        <div class="ms-300" style="margin-left: 300px; padding: 20px; overflow-x: hidden;">
+            <div class="d-flex justify-content-between align-items-center">
+            <p class="fs-2 fw-bold mb-0">On Process Reports</p>
+            <span class="text-uppercase fw-bold text-secondary" style="font-size: 0.9rem; cursor: pointer;">
+                Sort by <i class="fa-solid fa-arrow-down-short-wide ms-1"></i>
+            </span>
+            </div>
+        </div>
+
+        <!-- Report card -->
+        <div class="d-flex flex-column px-4" style="margin-left: 300px;">
+            <div class="d-flex justify-content-between align-items-center shadow rounded p-3 mb-3" style="background-color: white;">
+            <div class="text-dark">
+                <span class="fw-bold">Lawrence Dela Pena</span> - College of Computer Studies - 2025 - 05-27 - 4:50 pm
+            </div>
+            <div>
+                <a href="#" class="fw-bold text-dark text-decoration-none">View Report <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i></a>
+            </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column px-4" style="margin-left: 300px;">
+            <div class="d-flex justify-content-between align-items-center shadow rounded p-3 mb-3" style="background-color: white;">
+            <div class="text-dark">
+                <span class="fw-bold">Lawrence Dela Pena</span> - College of Computer Studies - 2025 - 05-27 - 4:50 pm
+            </div>
+            <div>
+                <a href="#" class="fw-bold text-dark text-decoration-none">View Report <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i></a>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- On Process Content End -->
+    <div id="resolvedReports">
+        <div class="ms-300" style="margin-left: 300px; padding: 20px; overflow-x: hidden;">
+            <div>
+                <p class="fs-2 fw-bold mb-0">Resolved Reports</p>
+            </div>
+            <div class="input-group mb-4 mt-3" style="width: 100%;">
+                <input type="text" class="form-control" placeholder="Search by report ID" aria-label="Search users">
+                <button class="btn btn-dark" type="button"><i class="ri-search-line"></i></button>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-top mb-4">
+                <div class="dropdown mb-4">
+                    <button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sort by
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <button class="btn btn-outline-dark fw-semibold">Download<i class="fa-solid fa-file-arrow-down ps-2"></i></button>
+                </div>
+            </div>
+
+            <table class="table table-striped pt-5 rounded-top-5">
+            <thead>
+                <tr class="" style="background-color: #F2B611;">
+                    <th style="background-color: #F2B611;">Building</th>
+                    <th style="background-color: #F2B611;">Floor</th>
+                    <th style="background-color: #F2B611;">Description</th>
+                    <th style="background-color: #F2B611;">Date Submitted</th>
+                    <th style="background-color: #F2B611;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>shanekiancastillo</th>
+                    <th>Shane Kian Castillo</th>
+                    <th><button class="btn btn-info">View Description</button></th>
+                    <th>CCS</th>
+                    
+                    <th><button class="btn btn-danger" onclick="blockUser()"><i class="fa-solid fa-trash pe-1"></i></i>Delete</button></th>
+                </tr>
+                <tr>
+                    <th>lawrencedelapena</th>
+                    <th>Lawrence Dela Pena</th>
+                    <th><button class="btn btn-info">View Description</button></th>
+                    <th>CSS</th>
+                    
+                    <th><button class="btn btn-danger"><i class="fa-solid fa-trash pe-1"></i>Delete</button></th>
+                </tr>
+            </tbody>
+        </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item">
+                    <a class="page-link text-dark fw-bold" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                    </li>
+                    <li class="page-item"><a class="page-link text-dark fw-bold" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link text-dark fw-bold" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link text-dark fw-bold" href="#">3</a></li>
+                    <li class="page-item">
+                    <a class="page-link text-dark fw-bold" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- Resolved Content -->
+     
+    <!-- Asset Request Content -->
+    <!-- Asset Request Content End -->
+
+    <!-- Request History Content -->
+    <!-- Resquest History Content End -->
+    
+    <!-- Change Password Content -->
+    <div id="changePasswordContent">
+        <div class="ms-300" style="margin-left: 300px; padding: 20px; overflow-x: hidden;">
+            <div>
+                <p class="fs-2 fw-bold mb-0">Change Password</p>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center mt-5 border col-lg-3 p-4 rounded-3 shadow" style="background-color: white; margin: auto;">
+                <form style="width: 350px;">
+                    <!-- Current Password -->
+                    <div class="mb-3 position-relative">
+                    <label for="currentPassword" class="form-label">Current Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="currentPassword">
+                        <span class="input-group-text" onclick="togglePassword('currentPassword')">
+                        <i class="fa-regular fa-eye"></i>
+                        </span>
+                    </div>
+                    </div>
+
+                    <!-- New Password -->
+                    <div class="mb-3 position-relative">
+                    <label for="newPassword" class="form-label">Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="newPassword">
+                        <span class="input-group-text" onclick="togglePassword('newPassword')">
+                        <i class="fa-regular fa-eye"></i>
+                        </span>
+                    </div>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="mb-4 position-relative">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="confirmPassword">
+                        <span class="input-group-text" onclick="togglePassword('confirmPassword')">
+                        <i class="fa-regular fa-eye"></i>
+                        </span>
+                    </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-outline-dark px-4 me-2">Cancel</button>
+                    <button type="submit" class="btn" style="background-color: #FFC107; color: black; font-weight: 500;">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Chnge Password Content End -->
 
 
+
+    <script src="../js/mis-admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
 </html>
